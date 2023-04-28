@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trip Planner</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./assests/css/style.css" />
+  </head>
+  <body>
+    <header>
+        <h1>Welcome to Trip Planner</h1>
+    </header>
+    <main>
+        <section class="flightSelector">
+            <h3>Plan Your Flight</h3>
+            <form>
+                <div class="grid-container">
+                    <h5>Locations</h5>
+                    <div class="grid-x grid-padding-x">
+                        <div class="medium-6 cell">
+                            <label>Flying From:
+                                <select>
+                                    <option value="placeholder">placeholder</option>
+                                    <option value="DestinationData">Destination Data from API</option>
+                                    <!--Replace data here from APIs, it should pull a drop down list-->                              
+                                </select>
+                            </label>
+                        </div>
+                    <div class="medium-6 cell">
+                        <label>Flying To:
+                            <select>
+                                <option value="placeholder">placeholder</option>
+                                <option value="DestinationData">Destination Data from API</option>
+                                <!--Replace data here from APIs, it should pull a drop down list-->
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <h5>Dates</h5>
+                <label for="start">Departure Date:</label>
+                <input type="date" id="start" name="trip-start"
+                value="2018-07-22"
+                min="2018-01-01" max="2018-12-31">
+                <!--^ Parameters for dates needs to be edited by what is available to us via the flight API-->
+            </div>
+            <div>
+                <label>
+                    How Many Adults Will Be Flying?
+                    <input type="number" value="1">
+                  </label>
+            </div>
+        </section>
+        <section class="flightResults">
+            <h3>Available Flights</h3>
+            <!--add search result section for flights and styling-->
+        </section>
+        <h3>Plan Your Ride</h3>
+        <form class="rideSelector">
+            <div class="grid-container">
+                <div class="grid-x grid-padding-x">
+                <div class="medium-6 cell">
+                    <label>Pick Up Location:
+                        <select>
+                            <option value="placeholder">placeholder</option>
+                            <option value="DestinationData">Destination Data from API</option>
+                            <!--Replace data here from APIs, it should pull a drop down list-->                              
+                        </select>
+                        </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>Drop Off Location: 
+                        <select>
+                            <option value="placeholder">placeholder</option>
+                            <option value="DestinationData">Destination Data from API</option>
+                            <!--Replace data here from APIs, it should pull a drop down list-->
+                        </select>
+                        </label>
+                </div>
+                </div>
+            </div>
+        </form>
+        <section>
+            <h3>Available Rides</h3>
+            <!--Add Styling and result from APIs Here-->
+        </section>
+        <section>
+            <h3>My Trip Library</h3>
+        </section>
+    </main>
+    <script src="assests/script/aviation.js"></script>
+    <script src="assests/script/ride.js"></script>
+  </body>
