@@ -53,10 +53,30 @@
                     <input type="number" value="1">
                   </label>
             </div>
+            <a class="button expanded" href="#">Submit</a>
         </section>
         <section class="flightResults">
             <h3>Available Flights</h3>
-            <!--add search result section for flights and styling-->
+            <table class="table align-center text-justify-center">
+                <thead>
+                  <tr class="table-row">
+                    <th>Outbound</th>
+                    <th>Return</th>
+                    <th>Cost</th>
+                    <th> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table-row hover" data-open-details>
+                    <td> <strong>SFO->LIS->LON</strong> <br>
+                        11h 20m</td>
+                    <td><strong>LON->LIS->SFO</strong> <br>
+                        11h 20m</td>
+                    <td>1234 EUR</td>
+                    <td><button class="submit success button">Select Flight</button></td>
+                  </tr>
+                </tbody>
+              </table>              
         </section>
         <h3>Plan Your Ride</h3>
         <form class="rideSelector">
@@ -93,4 +113,4 @@
     </main>
     <script src="assests/script/aviation.js"></script>
     <script src="assests/script/ride.js"></script>
-  </body>
+</body>
