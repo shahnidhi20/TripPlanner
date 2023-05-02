@@ -242,7 +242,7 @@ const showResults = (results) => {
       "beforeend",
       `<li id="${
         i + 1
-      }" class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center">
+      }" class="flex-column flex-sm-row list-group-item d-flex justify-content-between">
 
       ${movement.itineraries
         .map((itinerary, index) => {
