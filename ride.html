@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ride</title>
+    <link rel="stylesheet" type="text/css" href="/cdn.web-sdk-maps/maps.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/routing.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/cdn.web-sdk-plugin-searchbox/SearchBox.css"
+    />
+    <link rel="stylesheet" type="text/css" href="./assests/icons/routing.css" />
+  </head>
+  <style>
+    .map-view .icon {
+      height: 30px;
+      width: 30px;
+    }
+    .map-view .tt-icon.-finish {
+      height: 16px;
+      width: 16px;
+    }
+    .map-view .icon-spacing {
+      margin-right: 14px;
+      margin-top: 24px;
+    }
+    .map-view .searchbox {
+      flex: 1;
+    }
+    .map-view .searchbox-wrapper {
+      display: flex;
+      min-height: 52px;
+    }
+    .map-view .draggable-marker {
+      align-items: center;
+      background-color: #4a90e2;
+      border: solid 3px #2faaff;
+      border-radius: 50%;
+      display: flex;
+      height: 32px;
+      justify-content: center;
+      transition: width 0.1s, height 0.1s;
+      width: 32px;
+    }
+    .summary-header {
+      border-bottom: 1px solid #f2f2f2;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 24px;
+    }
+    .summary-details-top {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 24px 24px 0;
+    }
+    .summary-details-bottom {
+      display: flex;
+    }
+    .summary-icon-wrapper {
+      padding: 24px;
+      width: 98px;
+    }
+    .summary-details-text {
+      padding: 24px 24px 24px 0;
+      width: calc(100% - 98px);
+    }
+    .summary-details-info {
+      display: block;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    .summary-details-info.-second {
+      margin-top: 10px;
+    }
+    .tt-icon.-car {
+      height: 50px !important;
+      width: 50px !important;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="topnav" id="myTopnav">
+        <a href="aviation.html" class="active">Book Flight</a>
+        <a href="ride.html">Ride</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    </header>
+    <main>
+      <div class="map-view">
+        <form class="tt-side-panel js-form">
+          <header class="tt-side-panel__header">
+            <div class="searchbox-wrapper">
+              <div class="tt-icon icon-spacing -start"></div>
+              <div id="startSearchBox" class="tt-form-label searchbox"></div>
+            </div>
+            <div class="searchbox-wrapper">
+              <div class="tt-icon icon-spacing -finish"></div>
+              <div id="finishSearchBox" class="tt-form-label searchbox"></div>
+            </div>
+          </header>
+          <div class="tt-tabs js-tabs">
+            <div class="tt-tabs__panel">
+              <div class="tt-results-list js-results"></div>
+              <div class="js-results-loader" hidden="hidden">
+                <div class="loader-center"><span class="loader"></span></div>
+              </div>
+              <div class="tt-tabs__placeholder js-results-placeholder -small">
+                For results choose starting and destination points.
+              </div>
+            </div>
+          </div>
+        </form>
+        <div id="map" class="full-map"></div>
+      </div>
+    </main>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.57.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.57.0/services/services-web.min.js"></script>
+    <script
+      data-showable
+      type="text/javascript"
+      src="./assests/script/mobile-or-tablet.js"
+    ></script>
+    <script
+      data-showable
+      type="text/javascript"
+      src="./assests/script/foldable.js"
+    ></script>
+    <script
+      data-showable
+      type="text/javascript"
+      src="./assests/script/formatters.js"
+    ></script>
+    <script
+      data-showable
+      type="text/javascript"
+      src="./assests/script/info-hint.js"
+    ></script>
+    <script
+      data-showable
+      type="text/javascript"
+      src="./assests/script/dom-helpers.js"
+    ></script>
+    <script
+      data-showable
+      type="text/javascript"
+      src="./assests/script/results-manager.js"
+    ></script>
+    <script
+      data-showable
+      type="text/javascript"
+      src="./assests/script/searchbox-enter-submit.js"
+    ></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/2.23.1/SearchBox-web.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assests/script/ride.js"></script>
+  </body>
+</html>
