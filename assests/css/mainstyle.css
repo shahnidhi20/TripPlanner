@@ -1,0 +1,85 @@
+/* variables */
+:root {
+  --webwidth: 1280px;
+  --main-color: #ffbc00;
+  --light-pink-color: #d77dcd;
+  --light-color: #e4e4e0ea;
+  --dark-color: #333;
+  --medium-color: #ccc;
+  --primary-color: blueviolet;
+}
+
+body {
+  background-image: url("/assests/images/planebg.jpg");
+  height: 100vh;
+  margin: 0;
+}
+
+.flex-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.menu-bar {
+  border-radius: 3px;
+  height: fit-content;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  align-items: center;
+  padding: 0 5px;
+  margin: 10px 0 0 0;
+}
+
+.container {
+  /* max-width: var(--webwidth); */
+
+  padding: 0 2.5rem;
+  margin: auto;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 3px transparent solid;
+  padding-bottom: 0.5rem;
+  transition: border-color 0.5s;
+  color: white;
+}
+
+a:hover {
+  border-color: var(--primary-color);
+}
+
+li {
+  padding: 1rem 1.5rem;
+  list-style: none;
+}
+
+h1 {
+  color: white;
+}
+
+#menuitems {
+  display: flex;
+}
+
+.current {
+  border-color: var(--main-color);
+}
+
+/* li {
+  list-style: none;
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 10px 16px;
+  margin: 0 8px;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+} */

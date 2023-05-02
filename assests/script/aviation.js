@@ -1,3 +1,13 @@
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
 const originInput = document.getElementById("origin-input");
 const originOptions = document.getElementById("origin-options");
 const destinationInput = document.getElementById("destination-input");
@@ -6,10 +16,10 @@ const flightTypeSelect = document.getElementById("flight-type-select");
 const departureDateInput = document.getElementById("departure-date-input");
 const returnDate = document.getElementById("return-date");
 const returnDateInput = document.getElementById("return-date-input");
-const travelClassSelect = document.getElementById("travel-class-select");
+//const travelClassSelect = document.getElementById("travel-class-select");
 const adultsInput = document.getElementById("adults-input");
-const childrenInput = document.getElementById("children-input");
-const infantsInput = document.getElementById("infants-input");
+//const childrenInput = document.getElementById("children-input");
+//const infantsInput = document.getElementById("infants-input");
 const searchButton = document.getElementById("search-button");
 const searchResultsSeparator = document.getElementById(
   "search-results-separator"
@@ -17,11 +27,23 @@ const searchResultsSeparator = document.getElementById(
 const searchResultsLoader = document.getElementById("search-results-loader");
 const searchResults = document.getElementById("search-results");
 
+//region for Modal input forms
+const travelfName = document.getElementById("travel-fname-input");
+const travellName = document.getElementById("travel-lname-input");
+const travelbirthdate = document.getElementById("birth-date-input");
+const genderSelect = document.getElementById("travel-gender-input");
+
+const cntryCode = document.getElementById("phone-ctry-code-input");
+const phNumber = document.getElementById("phone-mobile-input");
+//endregion
+
 let destinationCityCodes = {};
 let originCityCodes = {};
 
 const autocompleteTimeout = 300;
 let autocompleteTimeoutHandle = 0;
+
+var tripLibraries = [];
 
 //reset the UI to its orginial state
 const reset = () => {
@@ -31,10 +53,10 @@ const reset = () => {
   departureDateInput.valueAsDate = new Date();
   returnDateInput.valueAsDate = new Date();
   returnDate.classList.add("d-none");
-  travelClassSelect.value = "ECONOMY";
+  //travelClassSelect.value = "ECONOMY";
   adultsInput.value = 1;
-  childrenInput.value = 0;
-  infantsInput.value = 0;
+  //childrenInput.value = 0;
+  //infantsInput.value = 0;
   searchButton.disabled = true;
 };
 
@@ -185,6 +207,8 @@ const search = async () => {
     // urlencoded.append("travelClass", travelClassSelect.value);
     urlencoded.append("max", "5");
 
+    console.log(urlencoded);
+
     const response = await fetch(
       `https://test.api.amadeus.com/v2/shopping/flight-offers?${urlencoded}`,
       requestOptions
@@ -193,13 +217,14 @@ const search = async () => {
     console.log(data);
     return data;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
+var resposneObject = {};
 //Show the results of the API in the list form.
 const showResults = (results) => {
-  if (results.length === 0) {
+  if (results.data.length === 0) {
     searchResults.insertAdjacentHTML(
       "beforeend",
       `<li class="list-group-item d-flex justify-content-center align-items-center" id="search-no-results">
@@ -209,11 +234,15 @@ const showResults = (results) => {
   }
 
   results.data.forEach(function (movement, i, arr) {
+    resposneObject[i + 1] = JSON.stringify(movement);
+    console.log(`${i} : ${resposneObject}`);
     const priceLabel = `${movement.price.total} ${movement.price.currency}`;
 
     searchResults.insertAdjacentHTML(
       "beforeend",
-      `<li class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center">
+      `<li id="${
+        i + 1
+      }" class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center">
 
       ${movement.itineraries
         .map((itinerary, index) => {
@@ -241,10 +270,201 @@ const showResults = (results) => {
 
 
       <span class="bg-primary rounded-pill m-2 badge fs-6">${priceLabel}</span>
+      <button id='${
+        i + 1
+      }' class="btn btn-primary rounded-pill m-2 badge fs-6" data-toggle="modal" data-target="#project-modal" onclick="orderFlight(this)">Book</button>
               </li>`
     );
   });
 };
+var flightOffers = [];
+function orderFlight(event) {
+  var btnid = event.id;
+
+  if (resposneObject != null) {
+    //open the modal popup to input the travellers information.
+    console.log(resposneObject[btnid]);
+    localStorage.setItem(
+      "flight_booked",
+      JSON.stringify(resposneObject[btnid])
+    );
+    location.href = "traveller.html";
+    flightOffers.push(resposneObject[btnid]);
+  }
+}
+
+function addTraveller(event) {
+  // event.preventDefault();
+  var travellers = {};
+  confirmFlightOrder(flightOffers, travellers);
+}
+
+function confirmFlightOrder(flightOffers, travellers) {
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append(
+    "Authorization",
+    "Bearer " + localStorage.getItem("access_token")
+  );
+
+  var raw = JSON.stringify({
+    data: {
+      type: "flight-order",
+      flightOffers: [JSON.parse(flightOffers[0])],
+      travelers: [
+        {
+          id: "1",
+          dateOfBirth: formatDate(travelbirthdate.valueAsDate),
+          name: {
+            firstName: travelfName.value,
+            lastName: travellName.value,
+          },
+          gender: genderSelect.value.toUpperCase(),
+          contact: {
+            // emailAddress: "jorge.gonzales833@telefonica.es",
+            phones: [
+              {
+                deviceType: "MOBILE",
+                countryCallingCode: cntryCode.value,
+                number: phNumber.value,
+              },
+            ],
+          },
+          documents: [],
+        },
+        // {
+        //   id: "2",
+        //   dateOfBirth: "2012-10-11",
+        //   gender: "FEMALE",
+        //   contact: {
+        //     emailAddress: "jorge.gonzales833@telefonica.es",
+        //     phones: [
+        //       {
+        //         deviceType: "MOBILE",
+        //         countryCallingCode: "34",
+        //         number: "480080076",
+        //       },
+        //     ],
+        //   },
+        //   name: {
+        //     firstName: "ADRIANA",
+        //     lastName: "GONZALES",
+        //   },
+        // },
+      ],
+      remarks: {
+        general: [
+          {
+            subType: "GENERAL_MISCELLANEOUS",
+            text: "ONLINE BOOKING FROM INCREIBLE VIAJES",
+          },
+        ],
+      },
+      ticketingAgreement: {
+        option: "DELAY_TO_CANCEL",
+        delay: "6D",
+      },
+      contacts: [
+        // {
+        //   addresseeName: {
+        //     firstName: "PABLO",
+        //     lastName: "RODRIGUEZ",
+        //   },
+        //   companyName: "INCREIBLE VIAJES",
+        //   purpose: "STANDARD",
+        //   phones: [
+        //     {
+        //       deviceType: "LANDLINE",
+        //       countryCallingCode: "34",
+        //       number: "480080071",
+        //     },
+        //     {
+        //       deviceType: "MOBILE",
+        //       countryCallingCode: "33",
+        //       number: "480080072",
+        //     },
+        //   ],
+        //   emailAddress: "support@increibleviajes.es",
+        //   address: {
+        //     lines: ["Calle Prado, 16"],
+        //     postalCode: "28014",
+        //     cityName: "Madrid",
+        //     countryCode: "ES",
+        //   },
+        // },
+      ],
+    },
+  });
+
+  console.log("Raw post body: " + raw);
+  var rawob = JSON.parse(raw);
+  console.log(rawob);
+  console.log(rawob.json());
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  var flightPrice = "";
+  var flightdetails = "";
+  // flightOffers[0].data.forEach(function (movement, i, arr) {
+  //   flightPrice = `${movement.price.total} ${movement.price.currency}`;
+
+  //   flightdetails = movement.itineraries
+  //     .map((itinerary, index) => {
+  //       const [, hours, minutes] = itinerary.duration.match(/(\d+)H(\d+)?/);
+  //       const travelPath = itinerary.segments
+  //         .flatMap(({ arrival, departure }, index, segments) => {
+  //           if (index === segments.length - 1) {
+  //             return [departure.iataCode, arrival.iataCode];
+  //           }
+  //           return [departure.iataCode];
+  //         })
+  //         .join(" → ");
+
+  //       return `travelPath: ${travelPath} , duration: ${hours || 0}h ${
+  //         minutes || 0
+  //       }m`;
+  //     })
+  //     .join("");
+  // });
+
+  // try {
+  //   const response = fetch(
+  //     "https://test.api.amadeus.com/v1/booking/flight-orders",
+  //     requestOptions
+  //   );
+  //   const data = response.json();
+  //   console.log(data);
+  // } catch (error) {
+  //   console.log("error", error);
+  // }
+
+  //save it in tripLibrary oBject
+  var trip = {
+    travellerName: travelfName.value + " " + travellName.value,
+    flights: [
+      {
+        travelPath: flightdetails,
+        travelOriginDate: formatDate(departureDateInput.valueAsDate),
+        travelReturnDate: formatDate(returnDateInput.valueAsDate),
+        price: flightPrice,
+      },
+    ],
+  };
+
+  console.log(trip);
+
+  //on the response show modal of booking conifmred.
+  //on ok click of that popup it will clear the controls with the text saying flight booked.
+  console.log("Request Order: " + requestOptions);
+  // fetch("https://test.api.amadeus.com/v1/booking/flight-orders", requestOptions)
+  //   .then((response) => response.text())
+  //   .then((result) => console.log("Resopnse of flight-order : " + result))
+  //   .catch((error) => console.log("error", error));
+}
 
 //Search button click
 searchButton.addEventListener("click", async () => {
