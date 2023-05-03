@@ -200,6 +200,12 @@ const search = async () => {
       "departureDate",
       formatDate(departureDateInput.valueAsDate)
     );
+
+    localStorage.setItem(
+      "departureDate",
+      formatDate(departureDateInput.valueAsDate)
+    );
+    localStorage.setItem("returnDate", formatDate(returnDateInput.valueAsDate));
     urlencoded.append("returnDate", formatDate(returnDateInput.valueAsDate));
 
     urlencoded.append("adults", formatNumber(adultsInput.value));
@@ -269,10 +275,10 @@ const showResults = (results) => {
         .join("")}
 
 
-      <span class="bg-primary rounded-pill m-2 badge fs-6">${priceLabel}</span>
+      <span class="primary ">${priceLabel}</span>
       <button id='${
         i + 1
-      }' class="btn btn-primary rounded-pill m-2 badge fs-6" data-toggle="modal" data-target="#project-modal" onclick="orderFlight(this)">Book</button>
+      }' class="primary button" data-toggle="modal" data-target="#project-modal" onclick="orderFlight(this)">Book</button>
               </li>`
     );
   });
@@ -288,7 +294,11 @@ function orderFlight(event) {
       "flight_booked",
       JSON.stringify(resposneObject[btnid])
     );
-    location.href = "traveller.html";
+    console.log(
+      "Flight Booked selected " +
+        JSON.stringify(localStorage.getItem("flight_booked"))
+    );
+    //location.href = "traveller.html";
     flightOffers.push(resposneObject[btnid]);
   }
 }

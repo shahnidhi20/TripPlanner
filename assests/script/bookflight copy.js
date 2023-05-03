@@ -1,12 +1,11 @@
 var travellers = {};
 
 function addTraveller() {
+  alert("clicked add");
   //create travellers object
   // get the booked flight from local storage
 
   var flightbooked = JSON.parse(localStorage.getItem("flight_booked"));
-
-  console.log("Flight from LS: " + localStorage.getItem("flight_booked"));
 
   var traveller = {
     fName: document.getElementById("fname").value,
@@ -623,13 +622,14 @@ function confirmFlightOrder(flightbooked, traveller) {
   console.log("Flight Booked " + flightbooked);
 
   //flightbooked.forEach(function (movement, i, arr) {
-  flightPrice = `${flightObject.price.base} ${flightObject.price.currency}`;
+  flightPrice = `${flightObject.price.total} ${flightObject.price.currency}`;
 
   flightdetails = flightObject.itineraries.map((itinerary, index) => {
     const [, hours, minutes] = itinerary.duration.match(/(\d+)H(\d+)?/);
     const travelPath = itinerary.segments
       .flatMap(({ arrival, departure }, index, segments) => {
         if (index === segments.length - 1) {
+          console.log("departure AT" + departure.at);
           return [departure.iataCode, arrival.iataCode];
         }
         return [departure.iataCode];
@@ -660,34 +660,20 @@ function confirmFlightOrder(flightbooked, traveller) {
     console.log("error of flight-orders", error);
   }
 
-  travelPath = [];
   console.log("FD" + JSON.stringify(flightdetails));
-  for (let index = 0; index < flightdetails.length; index++) {
-    const element = flightdetails[index];
-    travelPath.push(
-      `Path: ${element.travelPath} Duration: ${element.duration}`
-    );
-  }
   // save it in tripLibrary oBject
   var trip = {
-    travellerName: traveller.fName + " " + traveller.lName,
+    travellerName: traveller.fName.value + " " + traveller.lName.value,
     flights: [
       {
-        travelPaths: travelPath,
-        travelOriginDate: localStorage.getItem("departureDate"),
-        travelReturnDate: localStorage.getItem("returnDate"),
-        price: flightPrice,
+        travelPath: flightdetails.travelPath,
+        duration: flightdetails.duration,
+        // travelOriginDate: formatDate(departureDateInput.valueAsDate),
+        // travelReturnDate: formatDate(returnDateInput.valueAsDate),
+        // price: flightPrice,
       },
     ],
   };
-
-  var tripLibraries = [];
-  tripLibraries.push(trip);
-  localStorage.setItem("tripsLibrary", JSON.stringify(tripLibraries));
-
-  // When the user clicks the button, open the modal
-  var modal = document.getElementById("id01");
-  modal.style.display = "block";
 
   //console.log(trip);
 
@@ -698,10 +684,4 @@ function confirmFlightOrder(flightbooked, traveller) {
   //   .then((response) => response.text())
   //   .then((result) => console.log("Resopnse of flight-order : " + result))
   //   .catch((error) => console.log("error", error));
-}
-
-function CloseModal() {
-  var modal = document.getElementById("id01");
-  modal.style.display = "none";
-  location.href = "index.html";
 }
