@@ -31,7 +31,7 @@
   <body>
     <header class="flex-header menu-bar">
       <div>
-        <h1>Trip Advisor</h1>
+        <h1>Trip Planner</h1>
       </div>
       <ul id="menuitems">
         <li><a class="current" href="index.html">Flight Booking</a></li>
@@ -43,133 +43,131 @@
       </ul>
     </header>
 
-    <article>
-      <div class="grid-x grid-margin-x align-spaced">
-        <div class="medium-5 large-3 cell">
-          <div class="callout secondary">
-            <div class="grid-container">
-              <div class="grid-x">
-                <div>
-                  <label id="origin-label" for="origin-input">Origin</label>
+    <article class="grid-x grid-margin-x">
+      <div class="medium-5 large-3 cell">
+        <div class="callout secondary">
+          <div class="grid-container">
+            <div class="grid-x">
+              <div>
+                <label id="origin-label" for="origin-input">Origin</label>
 
-                  <input
-                    type="text"
-                    list="origin-options"
-                    id="origin-input"
-                    placeholder="Location"
-                    aria-describedby="origin-label"
-                  />
-                  <datalist id="origin-options"></datalist>
-                </div>
-                <div>
-                  <label id="destination-label" for="destination-input"
-                    >Destination</label
+                <input
+                  type="text"
+                  list="origin-options"
+                  id="origin-input"
+                  placeholder="Location"
+                  aria-describedby="origin-label"
+                />
+                <datalist id="origin-options"></datalist>
+              </div>
+              <div>
+                <label id="destination-label" for="destination-input"
+                  >Destination</label
+                >
+                <input
+                  type="text"
+                  list="destination-options"
+                  id="destination-input"
+                  placeholder="Location"
+                  aria-describedby="destination-label"
+                />
+                <datalist id="destination-options"></datalist>
+              </div>
+              <div class="grid-x">
+                <div class="cell">
+                  <label id="flight-type-label" for="flight-type-select"
+                    >Flight</label
                   >
-                  <input
-                    type="text"
-                    list="destination-options"
-                    id="destination-input"
-                    placeholder="Location"
-                    aria-describedby="destination-label"
-                  />
-                  <datalist id="destination-options"></datalist>
+                  <select
+                    id="flight-type-select"
+                    class="form-select"
+                    aria-describedby="flight-type-label"
+                  >
+                    <option value="one-way">One-way</option>
+                    <option value="round-trip">Round-trip</option>
+                  </select>
                 </div>
-                <div class="grid-x">
-                  <div class="cell">
-                    <label id="flight-type-label" for="flight-type-select"
-                      >Flight</label
+                <div class="cell">
+                  <div id="departure-date">
+                    <label
+                      id="departure-date-label"
+                      for="departure-date-input"
+                      class="form-label"
+                      >Departure date</label
                     >
-                    <select
-                      id="flight-type-select"
-                      class="form-select"
-                      aria-describedby="flight-type-label"
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="bi-calendar"></i>
+                      </span>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="departure-date-input"
+                        aria-describedby="departure-date-label"
+                      />
+                    </div>
+                  </div>
+                  <div id="return-date">
+                    <label id="return-date-label" for="return-date-input"
+                      >Return date</label
                     >
-                      <option value="one-way">One-way</option>
-                      <option value="round-trip">Round-trip</option>
-                    </select>
+                    <div>
+                      <input
+                        type="date"
+                        id="return-date-input"
+                        aria-describedby="return-date-label"
+                      />
+                    </div>
                   </div>
                   <div class="cell">
-                    <div id="departure-date">
-                      <label
-                        id="departure-date-label"
-                        for="departure-date-input"
-                        class="form-label"
-                        >Departure date</label
-                      >
+                    <label class="form-label">Passengers</label>
+                    <div class="mb-2">
                       <div class="input-group">
-                        <span class="input-group-text"
-                          ><i class="bi-calendar"></i>
-                        </span>
+                        <!-- <label for="adults-input" class="input-group-text"
+                  >Adults</label
+                > -->
                         <input
-                          type="date"
+                          type="number"
+                          min="0"
                           class="form-control"
-                          id="departure-date-input"
-                          aria-describedby="departure-date-label"
+                          id="adults-input"
+                          aria-describedby="adults-label"
                         />
                       </div>
                     </div>
-                    <div id="return-date">
-                      <label id="return-date-label" for="return-date-input"
-                        >Return date</label
-                      >
-                      <div>
-                        <input
-                          type="date"
-                          id="return-date-input"
-                          aria-describedby="return-date-label"
-                        />
-                      </div>
-                    </div>
-                    <div class="cell">
-                      <label class="form-label">Passengers</label>
-                      <div class="mb-2">
-                        <div class="input-group">
-                          <!-- <label for="adults-input" class="input-group-text"
-                    >Adults</label
-                  > -->
-                          <input
-                            type="number"
-                            min="0"
-                            class="form-control"
-                            id="adults-input"
-                            aria-describedby="adults-label"
-                          />
-                        </div>
-                      </div>
-                      <button id="search-button" class="submit primary button">
-                        Search
-                      </button>
-                    </div>
+                    <button id="search-button" class="submit primary button">
+                      Search
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="medium-5 large-3 cell align-self-stretch">
-          <div
-            class="border-bottom mb-4 pt-4"
-            id="search-results-separator"
-          ></div>
-          <div class="d-flex justify-content-center" id="search-results-loader">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
+      <div class="medium-5 large-3 cell align-self-stretch">
+        <div
+          class="border-bottom mb-4 pt-4"
+          id="search-results-separator"
+        ></div>
+        <div class="d-flex justify-content-center" id="search-results-loader">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
-          <ul class="list-group mb-4" id="search-results" style="background-color: azure;">
-            <!-- <li
-          class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center"
-        >
-          <div class="flex-column flex-1 m-2 d-flex">
-            <small class="text-muted">Outbound</small>
-            <span class="fw-bold">SFO->LIS->LON</span>
-            <div>11h 20m</div>
-          </div>
-          <span class="bg-primary rounded-pill m-2 badge fs-6">1234 EUR</span>
-        </li> -->
-          </ul>
         </div>
+        <ul class="list-group mb-4" id="search-results" style="background-color: azure;">
+          <!-- <li
+        class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center"
+      >
+        <div class="flex-column flex-1 m-2 d-flex">
+          <small class="text-muted">Outbound</small>
+          <span class="fw-bold">SFO->LIS->LON</span>
+          <div>11h 20m</div>
+        </div>
+        <span class="bg-primary rounded-pill m-2 badge fs-6">1234 EUR</span>
+      </li> -->
+        </ul>
       </div>
     </article>
     <article></article>
