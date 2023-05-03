@@ -27,7 +27,7 @@
     />
     <link rel="stylesheet" href="assests/css/mainstyle.css" />
   </head>
-  
+
   <body>
     <header class="flex-header menu-bar">
       <div>
@@ -45,11 +45,11 @@
 
     <article>
       <div class="grid-x grid-margin-x align-spaced">
-        <div class="medium-5 large-3 cell">
-          <div class="callout secondary">
+        <div class="medium-4 large-3 cell">
+          <div class="callout">
             <div class="grid-container">
               <div class="grid-x">
-                <div>
+                <div class="cell">
                   <label id="origin-label" for="origin-input">Origin</label>
 
                   <input
@@ -61,7 +61,7 @@
                   />
                   <datalist id="origin-options"></datalist>
                 </div>
-                <div>
+                <div class="cell">
                   <label id="destination-label" for="destination-input"
                     >Destination</label
                   >
@@ -147,7 +147,7 @@
           </div>
         </div>
 
-        <div class="medium-5 large-3 cell align-self-stretch">
+        <div class="medium-6 large-7 cell align-self-stretch">
           <div
             class="border-bottom mb-4 pt-4"
             id="search-results-separator"
@@ -157,8 +157,13 @@
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
-          <ul class="list-group mb-4" id="search-results" style="background-color: azure;">
-            <!-- <li
+          <form action="traveller.html">
+            <ul
+              class="list-group mb-4"
+              id="search-results"
+              style="background-color: azure"
+            >
+              <!-- <li
           class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center"
         >
           <div class="flex-column flex-1 m-2 d-flex">
@@ -168,7 +173,8 @@
           </div>
           <span class="bg-primary rounded-pill m-2 badge fs-6">1234 EUR</span>
         </li> -->
-          </ul>
+            </ul>
+          </form>
         </div>
       </div>
     </article>

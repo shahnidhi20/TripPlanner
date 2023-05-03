@@ -1,0 +1,111 @@
+/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+
+h3 {
+  color: white;
+}
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr {
+  background-color: #ffffff;
+}
+
+/* table tr:nth-child(even) {
+  background-color: #ffffff;
+} */
+
+table tr:hover {
+  background-color: #ffffff;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead {
+    /* position: absolute; */
+    top: -9999px;
+    left: -9999px;
+    visibility: hidden;
+  }
+
+  tbody th {
+    display: none;
+  }
+  /* th {
+    visibility: hidden;
+  } */
+
+  /* tr {
+    margin: 0 0 1rem 0;
+  } */
+
+  tr:nth-child(odd) {
+    background: #ccc;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+  /* 
+  td:before {
+    position: absolute;
+
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+  } */
+  /* white-space: nowrap; */
+  /*
+		Label the data
+    You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+		*/
+  td:nth-of-type(1):before {
+    content: "Name: ";
+  }
+  td:nth-of-type(2):before {
+    content: "Travel path and Duration: ";
+  }
+  td:nth-of-type(3):before {
+    content: "Departure Date: ";
+  }
+  td:nth-of-type(4):before {
+    content: "Return Date: ";
+  }
+  td:nth-of-type(5):before {
+    content: "Price: ";
+  }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Route Search</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./assests/css/route/indexRoute.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./assests/css/route/routestyle.css"
+    />
+    <link rel="stylesheet" href="assests/css/mainstyle.css" />
+  </head>
+  <body>
+    <header class="flex-header menu-bar">
+      <div>
+        <h1>Trip Advisor</h1>
+      </div>
+      <ul id="menuitems">
+        <li><a href="index.html">Flight Booking</a></li>
+        <li><a href="mytrip.html">My Trips</a></li>
+        <li><a class="current" href="route.html">Route Search</a></li>
+      </ul>
+      <ul></ul>
+    </header>
+    <div class="map-view">
+      <form class="tt-side-panel js-form">
+        <header class="tt-side-panel__header">
+          <div class="searchbox-wrapper">
+            <div class="tt-icon icon-spacing -start"></div>
+            <div id="startSearchBox" class="tt-form-label searchbox"></div>
+          </div>
+          <div class="searchbox-wrapper">
+            <div class="tt-icon icon-spacing -finish"></div>
+            <div id="finishSearchBox" class="tt-form-label searchbox"></div>
+          </div>
+        </header>
+        <div class="tt-tabs js-tabs">
+          <div class="tt-tabs__panel">
+            <div class="tt-results-list js-results"></div>
+            <div class="js-results-loader" hidden="hidden">
+              <div class="loader-center"><span class="loader"></span></div>
+            </div>
+            <div class="tt-tabs__placeholder js-results-placeholder -small">
+              For results choose starting and destination points.
+            </div>
+          </div>
+        </div>
+      </form>
+      <div id="map" class="full-map"></div>
+    </div>
+
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.23.0/services/services-web.min.js"></script>
+    <script
+      type="text/javascript"
+      src="./assests/script/mobile-or-tablet.js"
+    ></script>
+
+    <script type="text/javascript" src="./assests/script/foldable.js"></script>
+    <script
+      type="text/javascript"
+      src="./assests/script/formatters.js"
+    ></script>
+    <script type="text/javascript" src="./assests/script/info-hint.js"></script>
+    <script
+      type="text/javascript"
+      src="./assests/script/dom-helpers.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./assests/script/results-manager.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./assests/script/searchbox-enter-submit.js"
+    ></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.2.0//SearchBox-web.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assests/script/route.js"></script>
+  </body>
+</html>

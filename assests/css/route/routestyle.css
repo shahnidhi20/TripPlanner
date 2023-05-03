@@ -7,6 +7,7 @@
   background-repeat: no-repeat;
 }
 .tt-icon-start {
+  /* background-image: url(icons/start.png); */
   background-image: url("data:image/svg+xml;charset%3DUS-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%20width%3D%2230%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M20.8%209.25l-14.2%203.8%207.6%202.9%202.9%207.6%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat;
 }

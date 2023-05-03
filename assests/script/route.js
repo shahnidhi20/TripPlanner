@@ -79,7 +79,7 @@ function createSearchBox(type) {
   var searchBox = new tt.plugins.SearchBox(tt.services, {
     showSearchButton: false,
     searchOptions: {
-      key: "${api.key.search}",
+      key: "3JA83AzEEytfDrAGanr9GpP07x6ZfBzO",
     },
     labels: {
       placeholder: "Query e.g. Washington",
@@ -241,7 +241,7 @@ function onResultSelected(result, type) {
 
 function performCalculateRouteRequest() {
   return tt.services.calculateRoute({
-    key: "${api.key.routing}",
+    key: "3JA83AzEEytfDrAGanr9GpP07x6ZfBzO",
     traffic: false,
     locations: routePoints.start.join() + ":" + routePoints.finish.join(),
   });
@@ -249,7 +249,7 @@ function performCalculateRouteRequest() {
 
 function performReverseGeocodeRequest(lngLat) {
   return tt.services.reverseGeocode({
-    key: "${api.key.search}",
+    key: "3JA83AzEEytfDrAGanr9GpP07x6ZfBzO",
     position: lngLat,
   });
 }
