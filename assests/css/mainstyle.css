@@ -10,7 +10,7 @@
 }
 
 body {
-  background-image: url("/assests/images/planebg.jpg");
+  background-image: url("../images/planebg.jpg");
   height: 100vh;
   margin: 0;
 }

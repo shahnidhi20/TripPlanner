@@ -27,6 +27,7 @@
     />
     <link rel="stylesheet" href="assests/css/mainstyle.css" />
   </head>
+  
   <body>
     <header class="flex-header menu-bar">
       <div>
@@ -42,13 +43,13 @@
       </ul>
     </header>
 
-    <article class="grid-container">
-      <div class="grid-x grid-margin-x">
+    <article>
+      <div class="grid-x grid-margin-x align-spaced">
         <div class="medium-5 large-3 cell">
           <div class="callout secondary">
             <div class="grid-container">
-              <div class="grid-x grid-padding-x">
-                <div class="medium-6 cell">
+              <div class="grid-x">
+                <div>
                   <label id="origin-label" for="origin-input">Origin</label>
 
                   <input
@@ -60,7 +61,7 @@
                   />
                   <datalist id="origin-options"></datalist>
                 </div>
-                <div class="medium-6 cell">
+                <div>
                   <label id="destination-label" for="destination-input"
                     >Destination</label
                   >
@@ -135,7 +136,7 @@
                           />
                         </div>
                       </div>
-                      <button id="search-button" class="submit success button">
+                      <button id="search-button" class="submit primary button">
                         Search
                       </button>
                     </div>
@@ -146,7 +147,7 @@
           </div>
         </div>
 
-        <div class="medium-5 large-3 cell">
+        <div class="medium-5 large-3 cell align-self-stretch">
           <div
             class="border-bottom mb-4 pt-4"
             id="search-results-separator"
@@ -156,7 +157,7 @@
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
-          <ul class="list-group mb-4" id="search-results">
+          <ul class="list-group mb-4" id="search-results" style="background-color: azure;">
             <!-- <li
           class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center"
         >
@@ -174,6 +175,6 @@
     <article></article>
     <!-- Flight Book -->
 
-    <script src="/assests/script/aviation.js"></script>
+    <script src="./assests/script/aviation.js"></script>
   </body>
 </html>
