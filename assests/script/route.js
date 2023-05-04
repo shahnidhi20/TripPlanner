@@ -67,10 +67,13 @@ function createMarker(type, lngLat) {
 
 function createMarkerElement(type) {
   var element = document.createElement("div");
-  var innerElement = document.createElement("div");
+  var innerElement = document.createElement("img");
 
   element.className = "draggable-marker";
-  innerElement.className = "tt-icon -white -" + type;
+  innerElement.className = "tt-icon markersize";
+  if (type === "start") innerElement.src = "assests/images/start.png";
+  else innerElement.src = "assests/images/finish.png";
+  //"tt-icon -white -" + type;
   element.appendChild(innerElement);
   return element;
 }
@@ -120,16 +123,16 @@ function createSummaryContent(feature) {
     '<div class="summary-details-top">Leave now</div>' +
     '<div class="summary-details-bottom">' +
     '<div class="summary-icon-wrapper">' +
-    '<span class="tt-icon -car -big"></span>' +
+    '<img class="tt-icon -car" src="assests/images/car.png"></img>' +
     "</div>" +
     '<div class="summary-details-text">' +
     '<span class="summary-details-info">Distance: <b>' +
     Formatters.formatAsMetricDistance(feature.lengthInMeters) +
     "</b></span>" +
-    '<span class="summary-details-info -second">Arrive: <b>' +
-    Formatters.formatToExpandedDateTimeString(feature.arrivalTime) +
-    "</b></span>" +
     "</div>" +
+    '<div class="summary-details-info -second">Arrive: <b>' +
+    Formatters.formatToExpandedDateTimeString(feature.arrivalTime) +
+    "</b></div>" +
     "</div>";
 
   detailsWrapper.innerHTML = detailsHTML;

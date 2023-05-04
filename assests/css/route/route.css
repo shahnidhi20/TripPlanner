@@ -38,9 +38,11 @@
   font-size: 16px;
   font-weight: bold;
   padding: 24px 24px 0;
+  margin: 5px;
 }
 .summary-details-bottom {
   display: flex;
+  margin: 10px;
 }
 .summary-icon-wrapper {
   padding: 24px;
