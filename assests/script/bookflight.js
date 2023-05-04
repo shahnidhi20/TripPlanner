@@ -623,7 +623,7 @@ function confirmFlightOrder(flightbooked, traveller) {
   console.log("Flight Booked " + flightbooked);
 
   //flightbooked.forEach(function (movement, i, arr) {
-  flightPrice = `${flightObject.price.base} ${flightObject.price.currency}`;
+  flightPrice = `$ ${flightObject.price.base}`;
 
   flightdetails = flightObject.itineraries.map((itinerary, index) => {
     const [, hours, minutes] = itinerary.duration.match(/(\d+)H(\d+)?/);
