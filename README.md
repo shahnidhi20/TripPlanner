@@ -28,3 +28,4 @@ Please refer to the LICENSE in the repo.
 
 ## Link to Deployed Website
 
+https://shahnidhi20.github.io/TripPlanner/
