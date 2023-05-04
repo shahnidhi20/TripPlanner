@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Trip Advisor</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
@@ -39,9 +39,10 @@
         <li><a href="route.html">Route Search</a></li>
       </ul>
       <ul>
-        <li><a href="login.html">LOGIN/SIGNUP</a></li>
+        <!-- <li><a href="login.html">LOGIN/SIGNUP</a></li> -->
       </ul>
     </header>
+    <!-- Loader-->
 
     <article>
       <div class="grid-x grid-margin-x align-spaced">
@@ -146,15 +147,21 @@
             </div>
           </div>
         </div>
-
-        <div class="medium-6 large-7 cell align-self-stretch">
+        <div
+          id="loaderdiv"
+          class="medium-6 large-9 align-self-stretch loadercontainer"
+        >
+          <h1>Searching</h1>
+          <div class="loader loader1"></div>
+        </div>
+        <div class="medium-6 large-9 cell align-self-stretch">
           <div
             class="border-bottom mb-4 pt-4"
             id="search-results-separator"
           ></div>
           <div class="d-flex justify-content-center" id="search-results-loader">
             <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+              <span class="visually-hidden"></span>
             </div>
           </div>
           <form action="traveller.html">
@@ -164,21 +171,36 @@
               style="background-color: azure"
             >
               <!-- <li
-          class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center"
-        >
-          <div class="flex-column flex-1 m-2 d-flex">
-            <small class="text-muted">Outbound</small>
-            <span class="fw-bold">SFO->LIS->LON</span>
-            <div>11h 20m</div>
-          </div>
-          <span class="bg-primary rounded-pill m-2 badge fs-6">1234 EUR</span>
-        </li> -->
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <div>
+                  <small class="text-muted">Outbound</small>
+                  <span class="fw-bold">SFO->LIS->LON</span>
+                  <div>11h 20m</div>
+                  <small class="text-muted">Outbound</small>
+                  <span class="fw-bold">SFO->LIS->LON</span>
+                  <div>11h 20m</div>
+                </div>
+                <p class="successprice">1234 EUR</p>
+                <button
+                  id="btn"
+                  class="warning button"
+                  data-toggle="modal"
+                  data-target="#project-modal"
+                >
+                  Book
+                </button>
+              </li> -->
             </ul>
           </form>
         </div>
       </div>
     </article>
-    <article></article>
+
     <!-- Flight Book -->
 
     <script src="./assests/script/aviation.js"></script>

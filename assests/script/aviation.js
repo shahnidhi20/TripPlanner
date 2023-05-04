@@ -211,7 +211,7 @@ const search = async () => {
     urlencoded.append("adults", formatNumber(adultsInput.value));
     // urlencoded.append("children", formatNumber(childrenInput.value));
     // urlencoded.append("travelClass", travelClassSelect.value);
-    urlencoded.append("max", "5");
+    urlencoded.append("max", "10");
 
     console.log(urlencoded);
 
@@ -230,11 +230,13 @@ const search = async () => {
 var resposneObject = {};
 //Show the results of the API in the list form.
 const showResults = (results) => {
+  showhideLoader("none");
+
   if (results.data.length === 0) {
     searchResults.insertAdjacentHTML(
       "beforeend",
       `<li class="list-group-item d-flex justify-content-center align-items-center" id="search-no-results">
-        No results
+        No Flights found. Please change the search filter.  
       </li>`
     );
   }
@@ -242,13 +244,11 @@ const showResults = (results) => {
   results.data.forEach(function (movement, i, arr) {
     resposneObject[i + 1] = JSON.stringify(movement);
     console.log(`${i} : ${resposneObject}`);
-    const priceLabel = `${movement.price.total} ${movement.price.currency}`;
+    const priceLabel = `$ ${movement.price.total}`;
 
     searchResults.insertAdjacentHTML(
       "beforeend",
-      `<li id="${
-        i + 1
-      }" class="flex-column flex-sm-row list-group-item d-flex justify-content-between">
+      `<li id="${i + 1}" class="flightsearchList">
 
       ${movement.itineraries
         .map((itinerary, index) => {
@@ -262,12 +262,23 @@ const showResults = (results) => {
             })
             .join(" → ");
 
+          const flighttime = itinerary.segments
+            .flatMap(({ arrival, departure }, index, segments) => {
+              if (index === segments.length - 1) {
+                return [departure.at, arrival.at];
+              }
+              return [departure.at];
+            })
+            .join(" → ");
+
           return `
-                    <div class="flex-column flex-1 m-2 d-flex">
-                      <small class="text-muted">${
+                    <div>
+                      <h5 class="text-muted">${
                         index === 0 ? "Outbound" : "Return"
-                      }</small>
+                      }</h5>
+                      
                       <span class="fw-bold">${travelPath}</span>
+                       <div class="flighttimesmall">${flighttime}</div>
                       <div>${hours || 0}h ${minutes || 0}m</div>
                     </div>
                   `;
@@ -275,10 +286,10 @@ const showResults = (results) => {
         .join("")}
 
 
-      <span class="primary ">${priceLabel}</span>
+      <span class="successprice">${priceLabel}</span>
       <button id='${
         i + 1
-      }' class="primary button" data-toggle="modal" data-target="#project-modal" onclick="orderFlight(this)">Book</button>
+      }' class="warning button" data-toggle="modal" data-target="#project-modal" onclick="orderFlight(this)">Book</button>
               </li>`
     );
   });
@@ -479,6 +490,7 @@ function confirmFlightOrder(flightOffers, travellers) {
 //Search button click
 searchButton.addEventListener("click", async () => {
   // search
+  showhideLoader("flex");
   searchResultsSeparator.classList.remove("d-none");
   searchResultsLoader.classList.remove("d-none");
   searchResults.textContent = "";
@@ -492,3 +504,8 @@ searchButton.addEventListener("click", async () => {
 reset();
 
 getToken();
+
+function showhideLoader(displayvalue) {
+  document.getElementById("loaderdiv").style.display = displayvalue;
+  // document.getElementById("myDiv").style.display = "block";
+}
