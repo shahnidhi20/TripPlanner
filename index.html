@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Trip Advisor</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
@@ -27,7 +27,7 @@
     />
     <link rel="stylesheet" href="assests/css/mainstyle.css" />
   </head>
-  
+
   <body>
     <header class="flex-header menu-bar">
       <div>
@@ -39,138 +39,168 @@
         <li><a href="route.html">Route Search</a></li>
       </ul>
       <ul>
-        <li><a href="login.html">LOGIN/SIGNUP</a></li>
+        <!-- <li><a href="login.html">LOGIN/SIGNUP</a></li> -->
       </ul>
     </header>
+    <!-- Loader-->
 
-    <article class="grid-x grid-margin-x">
-      <div class="medium-5 large-3 cell">
-        <div class="callout secondary">
-          <div class="grid-container">
-            <div class="grid-x">
-              <div>
-                <label id="origin-label" for="origin-input">Origin</label>
-
-                <input
-                  type="text"
-                  list="origin-options"
-                  id="origin-input"
-                  placeholder="Location"
-                  aria-describedby="origin-label"
-                />
-                <datalist id="origin-options"></datalist>
-              </div>
-              <div>
-                <label id="destination-label" for="destination-input"
-                  >Destination</label
-                >
-                <input
-                  type="text"
-                  list="destination-options"
-                  id="destination-input"
-                  placeholder="Location"
-                  aria-describedby="destination-label"
-                />
-                <datalist id="destination-options"></datalist>
-              </div>
+    <article>
+      <div class="grid-x grid-margin-x align-spaced">
+        <div class="medium-4 large-3 cell">
+          <div class="callout">
+            <div class="grid-container">
               <div class="grid-x">
                 <div class="cell">
-                  <label id="flight-type-label" for="flight-type-select"
-                    >Flight</label
-                  >
-                  <select
-                    id="flight-type-select"
-                    class="form-select"
-                    aria-describedby="flight-type-label"
-                  >
-                    <option value="one-way">One-way</option>
-                    <option value="round-trip">Round-trip</option>
-                  </select>
+                  <label id="origin-label" for="origin-input">Origin</label>
+
+                  <input
+                    type="text"
+                    list="origin-options"
+                    id="origin-input"
+                    placeholder="Location"
+                    aria-describedby="origin-label"
+                  />
+                  <datalist id="origin-options"></datalist>
                 </div>
                 <div class="cell">
-                  <div id="departure-date">
-                    <label
-                      id="departure-date-label"
-                      for="departure-date-input"
-                      class="form-label"
-                      >Departure date</label
+                  <label id="destination-label" for="destination-input"
+                    >Destination</label
+                  >
+                  <input
+                    type="text"
+                    list="destination-options"
+                    id="destination-input"
+                    placeholder="Location"
+                    aria-describedby="destination-label"
+                  />
+                  <datalist id="destination-options"></datalist>
+                </div>
+                <div class="grid-x">
+                  <div class="cell">
+                    <label id="flight-type-label" for="flight-type-select"
+                      >Flight</label
                     >
-                    <div class="input-group">
-                      <span class="input-group-text"
-                        ><i class="bi-calendar"></i>
-                      </span>
-                      <input
-                        type="date"
-                        class="form-control"
-                        id="departure-date-input"
-                        aria-describedby="departure-date-label"
-                      />
-                    </div>
-                  </div>
-                  <div id="return-date">
-                    <label id="return-date-label" for="return-date-input"
-                      >Return date</label
+                    <select
+                      id="flight-type-select"
+                      class="form-select"
+                      aria-describedby="flight-type-label"
                     >
-                    <div>
-                      <input
-                        type="date"
-                        id="return-date-input"
-                        aria-describedby="return-date-label"
-                      />
-                    </div>
+                      <option value="one-way">One-way</option>
+                      <option value="round-trip">Round-trip</option>
+                    </select>
                   </div>
                   <div class="cell">
-                    <label class="form-label">Passengers</label>
-                    <div class="mb-2">
+                    <div id="departure-date">
+                      <label
+                        id="departure-date-label"
+                        for="departure-date-input"
+                        class="form-label"
+                        >Departure date</label
+                      >
                       <div class="input-group">
-                        <!-- <label for="adults-input" class="input-group-text"
-                  >Adults</label
-                > -->
+                        <span class="input-group-text"
+                          ><i class="bi-calendar"></i>
+                        </span>
                         <input
-                          type="number"
-                          min="0"
+                          type="date"
                           class="form-control"
-                          id="adults-input"
-                          aria-describedby="adults-label"
+                          id="departure-date-input"
+                          aria-describedby="departure-date-label"
                         />
                       </div>
                     </div>
-                    <button id="search-button" class="submit primary button">
-                      Search
-                    </button>
+                    <div id="return-date">
+                      <label id="return-date-label" for="return-date-input"
+                        >Return date</label
+                      >
+                      <div>
+                        <input
+                          type="date"
+                          id="return-date-input"
+                          aria-describedby="return-date-label"
+                        />
+                      </div>
+                    </div>
+                    <div class="cell">
+                      <label class="form-label">Passengers</label>
+                      <div class="mb-2">
+                        <div class="input-group">
+                          <!-- <label for="adults-input" class="input-group-text"
+                    >Adults</label
+                  > -->
+                          <input
+                            type="number"
+                            min="0"
+                            class="form-control"
+                            id="adults-input"
+                            aria-describedby="adults-label"
+                          />
+                        </div>
+                      </div>
+                      <button id="search-button" class="submit primary button">
+                        Search
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="medium-5 large-3 cell align-self-stretch">
         <div
-          class="border-bottom mb-4 pt-4"
-          id="search-results-separator"
-        ></div>
-        <div class="d-flex justify-content-center" id="search-results-loader">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+          id="loaderdiv"
+          class="medium-6 large-9 align-self-stretch loadercontainer"
+        >
+          <h1>Searching</h1>
+          <div class="loader loader1"></div>
+        </div>
+        <div class="medium-6 large-9 cell align-self-stretch">
+          <div
+            class="border-bottom mb-4 pt-4"
+            id="search-results-separator"
+          ></div>
+          <div class="d-flex justify-content-center" id="search-results-loader">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden"></span>
+            </div>
           </div>
+          <form action="traveller.html">
+            <ul
+              class="list-group mb-4"
+              id="search-results"
+              style="background-color: azure"
+            >
+              <!-- <li
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <div>
+                  <small class="text-muted">Outbound</small>
+                  <span class="fw-bold">SFO->LIS->LON</span>
+                  <div>11h 20m</div>
+                  <small class="text-muted">Outbound</small>
+                  <span class="fw-bold">SFO->LIS->LON</span>
+                  <div>11h 20m</div>
+                </div>
+                <p class="successprice">1234 EUR</p>
+                <button
+                  id="btn"
+                  class="warning button"
+                  data-toggle="modal"
+                  data-target="#project-modal"
+                >
+                  Book
+                </button>
+              </li> -->
+            </ul>
+          </form>
         </div>
-        <ul class="list-group mb-4" id="search-results" style="background-color: azure;">
-          <!-- <li
-        class="flex-column flex-sm-row list-group-item d-flex justify-content-between align-items-sm-center"
-      >
-        <div class="flex-column flex-1 m-2 d-flex">
-          <small class="text-muted">Outbound</small>
-          <span class="fw-bold">SFO->LIS->LON</span>
-          <div>11h 20m</div>
-        </div>
-        <span class="bg-primary rounded-pill m-2 badge fs-6">1234 EUR</span>
-      </li> -->
-        </ul>
       </div>
     </article>
-    <article></article>
+
     <!-- Flight Book -->
 
     <script src="./assests/script/aviation.js"></script>
